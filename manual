@@ -1,0 +1,59 @@
+.TL
+Outil de comptabilité pour étudiants ou fans inconditionnels des comptes en T
+.AU
+Guillaume Huysmans
+.AI
+Faculté des Sciences, UMONS
+
+.NH
+Syntaxe
+.LP
+
+compta [-P pcmn] [-T driver] transactions|- [...]
+
+Des noms de fichiers textes (UTF-8) sont passés en paramètres.
+Le nom - est un alias pour l'entrée standard et ne peut donc
+être utilisé qu'une seule fois.
+
+Dans les fichiers de transactions, les lignes vides effectuent
+l'écriture décrite plus tôt (ou ne font rien du tout).
+Cette dernière est composée de lignes au format suivant :
+
+.TS
+;
+l l l.
+compte de débit	montant	[nom]
+>compte de crédit	montant	[nom]
+;commentaire
+.TE
+
+Une écriture ne passera pas si elle n'est pas équilibrée.
+
+Lorsqu'un compte anonyme est mentionné, sa description est cherchée
+automatiquement dans le plan comptable (-P fichier)
+formaté comme suit :
+
+.TS
+;
+l l.
+compte	description
+.TE
+.NH
+Exemple
+.LP
+
+$ cat pcmn
+.TS
+;
+l l.
+400	clients
+451	TVA sur achats
+.TE
+$ compta -P pcmn ->res.ps
+.TS
+;
+l l l.
+400	1210
+>451	210
+>700	1000	ventes
+.TE
