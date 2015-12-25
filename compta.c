@@ -223,7 +223,7 @@ int main(int argc, char *argv[]) {
 			return 1;
 		}
 	}
-	if (0 && optind == argc) {
+	if (optind == argc) {
 		fprintf(stderr, USAGE, argv[0]);
 		return 1;
 	}
