@@ -42,7 +42,7 @@ compte	description
 Exemple
 .LP
 
-$ cat pcmn
+$ cat >pcmn
 .TS
 ;
 l l.
