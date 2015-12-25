@@ -137,6 +137,8 @@ void parsetransactions(char *filename) {
 					op->number = op_num;
 					op->next = account->operations;
 					if (has_descr) {
+						if (account->description)
+							free(account->description);
 						//won't fail since we're working line-wise
 						p = strtok(NULL, "\n");
 						//TODO check for tab
@@ -186,6 +188,23 @@ void flushtogroff() {
 	pclose(output);
 }
 
+void freeaccounts() {
+	struct account *v = accounts;
+	while (v) {
+		struct account *nx = v->next;
+		struct account_op *op = v->operations;
+		while (op) {
+			struct account_op *nx2 = op->next;
+			free(op);
+			op = nx2;
+		}
+		if (v->description)
+			free(v->description);
+		free(v);
+		v = nx;
+	}
+}
+
 int main(int argc, char *argv[]) {
 	char *driver=NULL;
 	int o;
@@ -216,6 +235,7 @@ int main(int argc, char *argv[]) {
 		strcpy(buf, FILTER);
 		strcat(buf, driver);
 		output = popen(buf, "w");
+		free(buf);
 		if (!output)
 			err(errno, "popen");
 		atexit(flushtogroff);
@@ -227,5 +247,7 @@ int main(int argc, char *argv[]) {
 		parsetransactions(argv[optind]);
 	fprintf(output, MIDDLE);
 	output_accounts(accounts);
+	freeaccounts();
+	free(s);
 	return 0;
 }
