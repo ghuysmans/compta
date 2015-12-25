@@ -1,2 +1,3 @@
 .gitignore
 : foreach model manual |> groff -ms -Dutf8 -t %f>%o |> %B.ps
+: compta.c |> gcc -g -o %B %f |> compta
