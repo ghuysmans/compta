@@ -91,6 +91,11 @@ void loadpcmn(char *filename) {
 	fclose(f);
 }
 
+void checkbalance(const char *filename, int line, int balance) {
+	if (balance)
+		error_at_line(-4, 0, filename, line, "uneven balance: %d", balance);
+}
+
 void parsetransactions(char *filename) {
 	FILE *f;
 	int line=1;
@@ -101,8 +106,7 @@ void parsetransactions(char *filename) {
 		err(errno, filename);
 	while (getline(&s, &l, f) != -1) {
 		if (*s == '\n') {
-			if (acc)
-				error_at_line(-4, 0, filename, line, "uneven balance");
+			checkbalance(filename, line, acc);
 			acc = 0;
 			if (!first)
 				fprintf(output, OPS_FOOTER);
@@ -158,8 +162,7 @@ void parsetransactions(char *filename) {
 	}
 	if (!first)
 		fprintf(output, OPS_FOOTER);
-	if (acc)
-		error_at_line(-4, 0, filename, line, "uneven balance");
+	checkbalance(filename, line, acc);
 	fclose(f);
 }
 
