@@ -23,6 +23,7 @@ struct account_op {
 struct account *accounts = NULL;
 int verbose = 0;
 FILE *output;
+int op_num=0;
 
 char *s=NULL;
 size_t l=0;
@@ -92,7 +93,7 @@ void loadpcmn(char *filename) {
 
 void parsetransactions(char *filename) {
 	FILE *f;
-	int line=1, op_num=0;
+	int line=1;
 	int acc=0, first=1;
 	if (*filename == '-')
 		f = stdin;
