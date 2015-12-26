@@ -126,7 +126,6 @@ void parsetransactions(char *filename) {
 				if (!(p = strtok(NULL, DELIM "\n")))
 					error_at_line(-2, 0, filename, line, "syntax error");
 				else {
-					int has_descr = *(p+strlen(p)-1) != '\n';
 					struct account_op *op;
 					char *f = sign<0 ? "\t%d\t%s\t%d\n" : "%d\t\t%s\t%d\n";
 					if (!(op = malloc(sizeof(struct account_op))))
@@ -136,11 +135,9 @@ void parsetransactions(char *filename) {
 					acc += op->amount = sign*atoi(p);
 					op->number = op_num;
 					op->next = account->operations;
-					if (has_descr) {
+					if (p = strtok(NULL, "\n")) {
 						if (account->description)
 							free(account->description);
-						//won't fail since we're working line-wise
-						p = strtok(NULL, "\n");
 						//TODO check for tab
 						if (isdigit(*p))
 							error_at_line(-2, 0, filename, line, "expected text");
