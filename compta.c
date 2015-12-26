@@ -35,7 +35,7 @@ size_t l=0;
 
 #define HEADER ".2C\n.ps 12\nOpérations\n\n.ev table\n.ps 10\n"
 #define OPS_HEADER \
-	".KS\n.TS\ndecimalpoint(,);\ncb s s s\nl | l || c || n.\n" \
+	".KS\n.TS\ndecimalpoint(,);\ncb s s s\nn | n || c || l.\n" \
 	"%d @ %s:%d\n_\n"
 #define OPS_FOOTER ".TE\n.KE\n"
 #define MIDDLE "\n.bp\n.ev\nComptes\n\n.ev table\n"
@@ -149,7 +149,7 @@ void parsetransactions(char *filename) {
 						fprintf(output, OPS_HEADER, op_num, filename, line);
 						first = 0;
 					}
-					fprintf(output, f, account->number, account->description, abs(op->amount));
+					fprintf(output, f, abs(op->amount), account->description, account->number);
 				}
 			}
 		}
