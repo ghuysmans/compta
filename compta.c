@@ -38,11 +38,11 @@ size_t l=0;
 #define OPS_HEADER \
 	".KS\n.TS\ndecimalpoint(,);\ncb s s s\nn | n || c || l.\n" \
 	"%d @ %s:%d\n_\n"
-#define OPS_FOOTER ".TE\n.KE\n"
+#define OPS_FOOTER ".TE\n.KE\n\n"
 #define MIDDLE "\n.bp\n.ev\nComptes\n\n.ev table\n"
 #define ACC_HEADER \
 	".KS\n.TS\ndecimalpoint(,);\ncb s s\nni | n | n.\n%d %s\n_\n"
-#define ACC_FOOTER ".TE\n.KE\n"
+#define ACC_FOOTER ".TE\n.KE\n\n"
 
 #define FILTER "groff -Dutf8 -t -T "
 
