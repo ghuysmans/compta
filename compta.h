@@ -18,13 +18,13 @@ struct account_op {
 
 struct hook {
 	//TODO add a version field? how should we handle it?
-	void (*header)();
+	void (*header)(void);
 	void (*raw)(const char *filename, char *s);
 	void (*operation_header)(const char *filename, int line);
 	void (*operation)(const char *filename,
 		const struct account *account, const struct account_op *op, int line);
 	void (*operation_footer)(const char *filename);
-	void (*printaccounts)();
+	void (*printaccounts)(void);
 };
 
 extern struct account *accounts;

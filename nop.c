@@ -18,7 +18,7 @@ void operation(const char *filename, const struct account *account, const struct
 void operation_footer(const char *filename) {
 }
 
-void printaccounts(const char *filename) {
+void printaccounts() {
 }
 
 void setuphook(const char *driver) {
