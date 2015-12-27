@@ -16,7 +16,7 @@
 
 #define FILTER "groff -Dutf8 -t -T "
 
-static void output_account_operations(struct account_op *operation) {
+void output_account_operations(struct account_op *operation) {
 	if (operation) {
 		char *f = operation->amount<0 ? "%d\t\t%d\n" : "%d\t%d\n";
 		output_account_operations(operation->next);
@@ -24,7 +24,7 @@ static void output_account_operations(struct account_op *operation) {
 	}
 }
 
-static void output_accounts(struct account *account) {
+void output_accounts(struct account *account) {
 	if (account) {
 		output_accounts(account->next);
 		if (verbose || account->operations) {
@@ -35,33 +35,33 @@ static void output_accounts(struct account *account) {
 	}
 }
 
-static void operation_footer(const char *filename) {
+void operation_footer(const char *filename) {
 	fprintf(output, OPS_FOOTER);
 }
 
-static void header() {
+void header() {
 	fprintf(output, HEADER);
 }
 
-static void printaccounts() {
+void printaccounts() {
 	fprintf(output, MIDDLE);
 	output_accounts(accounts);
 }
 
-static void raw(const char *filename, char *s) {
+void raw(const char *filename, char *s) {
 	fprintf(output, "%s", s);
 }
 
-static void operation_header(const char *filename, int line) {
+void operation_header(const char *filename, int line) {
 	fprintf(output, OPS_HEADER, op_num, filename, line);
 }
 
-static void operation(const char *filename, const struct account *account, const struct account_op *op, int line) {
+void operation(const char *filename, const struct account *account, const struct account_op *op, int line) {
 	char *f = op->amount<0 ? "\t%d\t%s\t%d\n" : "%d\t\t%s\t%d\n";
 	fprintf(output, f, abs(op->amount), account->description, account->number);
 }
 
-static void flushtogroff() {
+void flushtogroff() {
 	pclose(output);
 }
 
