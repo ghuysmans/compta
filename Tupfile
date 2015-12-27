@@ -1,3 +1,5 @@
 .gitignore
 : foreach model manual |> groff -ms -Dutf8 -t %f>%o |> %B.ps
-: compta.c |> gcc -g -o %B %f |> compta
+: foreach nop.c |> gcc -g -fPIC -shared -o %o %f |> %B.so
+#-rdynamic exposes global variables and symbols to addons
+: compta.c troff.c |> gcc -g -rdynamic -o %o %f -ldl |> compta
