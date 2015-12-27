@@ -9,7 +9,7 @@ Faculté des Sciences, UMONS
 Syntaxe
 .LP
 
-compta [-P pcmn] [-T driver] transactions|- [...]
+compta [-P pcmn] [-T driver] [-l hook] transactions|- [...]
 
 Des noms de fichiers textes (UTF-8) sont passés en paramètres.
 Le nom - est un alias pour l'entrée standard et ne peut donc
@@ -38,6 +38,11 @@ formaté comme suit :
 l l.
 compte	description
 .TE
+
+Si vous voulez générer du LaTeX, il vous suffit d'écrire un hook (-l).
+Un exemple est donné dans nop.c tandis que celui utilisé par défaut
+se trouve dans troff.c. Remarquez que ses fonctions sont déclarées
+statiques afin d'éviter que le linker ne les utilise pour les "vrais" hooks.
 .NH
 Exemple
 .LP
