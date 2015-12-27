@@ -6,7 +6,6 @@ void header() {
 }
 
 void raw(const char *filename, char *s) {
-	fprintf(output, "%s: %s", filename, s);
 }
 
 void operation_header(const char *filename, int line) {
