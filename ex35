@@ -1,0 +1,36 @@
+;bilan de l'entreprise ABC
+2410	10000	matériel roulant
+57	20000	caisse
+34	100000	stock
+>440	15000	fournisseurs
+>100	115000	capital
+
+2400	5000	mobilier
+>57	5000
+
+550	20000	banque
+>173	20000	crédit
+
+440	15000
+>57	15000
+
+57	5000
+>550	5000
+
+604	10000	achats de marchandises
+>550	10000
+
+;Attention : au comptant c'est en liquide !
+;
+57	14000
+>700	14000	ventes
+
+550	25000
+>700	25000
+
+400	15000	client
+>700	15000
+
+;inventaire qui ajoute une charge vu qu'on a utilisé une partie
+6094	54000	delta stock
+>34	54000

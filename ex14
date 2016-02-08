@@ -1,0 +1,15 @@
+;ouverture des comptes
+2210	120000	immeubles
+2400	17000	mobilier
+231	23000	machines ?
+400	5000	créances clients
+550	2800	banque
+>100	167800	capital
+
+;achats
+600	1000	matières premières ?
+>440	1000	dettes fournisseurs
+
+;téléphone
+61	250	services & biens divers
+>440	250	dettes fournisseurs
